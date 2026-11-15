@@ -25,27 +25,31 @@ log = logging.getLogger(__name__)
 async def poll_and_process():
     """Main entry: poll Telegram and handle each update."""
     offset = int(get_bot_state("telegram_offset") or "0")
+    log.info("Requesting updates from Telegram (offset=%d)...", offset)
     updates = await get_updates(offset=offset, timeout=5)
+    log.info("Received %d update(s) from Telegram", len(updates))
 
     for update in updates:
         new_offset = update["update_id"] + 1
         set_bot_state("telegram_offset", str(new_offset))
 
         if not is_authorized(update):
-            log.info("Ignoring unauthorized update")
             continue
 
         # Callback queries (button presses)
         cb = extract_callback_data(update)
         if cb:
             cq_id = get_callback_query_id(update)
+            log.info("Handling callback query: %s", cb)
             await handle_callback(cb, cq_id)
             continue
 
         # Text messages
         text = extract_message_text(update)
         if text:
+            log.info("Handling text message: '%s'", text)
             await handle_message(text)
+
 
 
 # ── Message router ────────────────────────────────────────

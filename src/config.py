@@ -36,9 +36,9 @@ def check_required_env():
 
 
 # ── Telegram ──────────────────────────────────────────────
-TELEGRAM_BOT_TOKEN: str = _get("TELEGRAM_BOT_TOKEN", "")
+TELEGRAM_BOT_TOKEN: str = _get("TELEGRAM_BOT_TOKEN", "").strip()
 try:
-    TELEGRAM_USER_ID: int = int(_get("TELEGRAM_USER_ID", "0"))
+    TELEGRAM_USER_ID: int = int(_get("TELEGRAM_USER_ID", "0").strip())
 except ValueError:
     TELEGRAM_USER_ID = 0
 

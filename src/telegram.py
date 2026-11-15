@@ -45,7 +45,11 @@ async def send_message(
                 payload.pop("parse_mode", None)
                 resp = await c.post(f"{API}/sendMessage", json=payload)
                 result = resp.json()
-            log.debug("sendMessage ok=%s", result.get("ok"))
+            if not result.get("ok"):
+                log.error("Telegram sendMessage FAILED: %s (payload chat_id=%s)", result, cid)
+            else:
+                log.info("Telegram sendMessage OK: msg_id=%s to chat_id=%s",
+                         result.get("result", {}).get("message_id"), cid)
     return result
 
 
@@ -93,7 +97,19 @@ def is_authorized(update: dict) -> bool:
         uid = update["message"].get("from", {}).get("id")
     elif "callback_query" in update:
         uid = update["callback_query"].get("from", {}).get("id")
-    return uid == TELEGRAM_USER_ID
+
+    if uid is None:
+        log.warning("No sender ID found in update: %s", update)
+        return False
+
+    auth = str(uid).strip() == str(TELEGRAM_USER_ID).strip()
+    if not auth:
+        log.warning(
+            "UNAUTHORIZED sender! Received from user_id=%s, but authorized TELEGRAM_USER_ID=%s",
+            uid,
+            TELEGRAM_USER_ID,
+        )
+    return auth
 
 
 def extract_message_text(update: dict) -> str | None:
