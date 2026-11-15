@@ -1,0 +1,26 @@
+# Environment variables & secrets
+.env
+*.env
+
+# SQLite & local replicas
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+local.db
+local_replica.db
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# OS specific
+.DS_Store
+Thumbs.db

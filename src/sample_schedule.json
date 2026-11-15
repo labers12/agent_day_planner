@@ -1,0 +1,134 @@
+[
+  {
+    "day_of_week": 0,
+    "week_parity": "any",
+    "start_time": "08:45",
+    "end_time": "10:20",
+    "subject": "Математический анализ",
+    "lecture_type": "лекция",
+    "building": "2",
+    "room": "301",
+    "teacher": "Иванов И. И."
+  },
+  {
+    "day_of_week": 0,
+    "week_parity": "any",
+    "start_time": "10:35",
+    "end_time": "12:10",
+    "subject": "Алгоритмы и структуры данных",
+    "lecture_type": "практика",
+    "building": "2",
+    "room": "205",
+    "teacher": "Смирнов А. В."
+  },
+  {
+    "day_of_week": 0,
+    "week_parity": "any",
+    "start_time": "12:25",
+    "end_time": "14:00",
+    "subject": "Программирование на Си",
+    "lecture_type": "лабораторная",
+    "building": "2",
+    "room": "218 (комп. класс)",
+    "teacher": "Козлов Д. С."
+  },
+  {
+    "day_of_week": 1,
+    "week_parity": "any",
+    "start_time": "10:35",
+    "end_time": "12:10",
+    "subject": "Линейная алгебра и геометрия",
+    "lecture_type": "лекция",
+    "building": "Главный",
+    "room": "229",
+    "teacher": "Петрова Е. Н."
+  },
+  {
+    "day_of_week": 1,
+    "week_parity": "any",
+    "start_time": "12:25",
+    "end_time": "14:00",
+    "subject": "Иностранный язык",
+    "lecture_type": "практика",
+    "building": "Главный",
+    "room": "402",
+    "teacher": "Сидорова О. В."
+  },
+  {
+    "day_of_week": 2,
+    "week_parity": "any",
+    "start_time": "08:45",
+    "end_time": "10:20",
+    "subject": "Дискретная математика",
+    "lecture_type": "лекция",
+    "building": "2",
+    "room": "315",
+    "teacher": "Васильев В. А."
+  },
+  {
+    "day_of_week": 2,
+    "week_parity": "any",
+    "start_time": "10:35",
+    "end_time": "12:10",
+    "subject": "Дискретная математика",
+    "lecture_type": "практика",
+    "building": "2",
+    "room": "315",
+    "teacher": "Васильев В. А."
+  },
+  {
+    "day_of_week": 2,
+    "week_parity": "any",
+    "start_time": "12:25",
+    "end_time": "14:00",
+    "subject": "Физическая культура",
+    "lecture_type": "практика",
+    "building": "Спорткорпус",
+    "room": "С/з 1",
+    "teacher": "Морозов Н. К."
+  },
+  {
+    "day_of_week": 3,
+    "week_parity": "any",
+    "start_time": "10:35",
+    "end_time": "12:10",
+    "subject": "Архитектура вычислительных систем",
+    "lecture_type": "лекция",
+    "building": "2",
+    "room": "208",
+    "teacher": "Федоров С. П."
+  },
+  {
+    "day_of_week": 3,
+    "week_parity": "any",
+    "start_time": "12:25",
+    "end_time": "14:00",
+    "subject": "Архитектура вычислительных систем",
+    "lecture_type": "лабораторная",
+    "building": "2",
+    "room": "218 (комп. класс)",
+    "teacher": "Федоров С. П."
+  },
+  {
+    "day_of_week": 4,
+    "week_parity": "any",
+    "start_time": "08:45",
+    "end_time": "10:20",
+    "subject": "Математический анализ",
+    "lecture_type": "практика",
+    "building": "2",
+    "room": "301",
+    "teacher": "Иванов И. И."
+  },
+  {
+    "day_of_week": 4,
+    "week_parity": "any",
+    "start_time": "10:35",
+    "end_time": "12:10",
+    "subject": "Базы данных",
+    "lecture_type": "лекция",
+    "building": "2",
+    "room": "210",
+    "teacher": "Николаев М. Г."
+  }
+]
