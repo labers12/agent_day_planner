@@ -95,6 +95,14 @@ class SmokeTestSuite(unittest.TestCase):
         parity = determine_week_parity()
         self.assertIn(parity, ["odd", "even"])
 
+    def test_list_parameters_converted_to_tuple(self):
+        # Must accept list parameters without raising TypeError
+        res = fetchall("SELECT * FROM university_schedule WHERE day_of_week = ?", [0])
+        self.assertIsInstance(res, list)
+        res2 = fetchall("SELECT * FROM university_schedule WHERE day_of_week = ? AND week_parity = ?", [0, "any"])
+        self.assertIsInstance(res2, list)
+
+
 
 if __name__ == "__main__":
     unittest.main()

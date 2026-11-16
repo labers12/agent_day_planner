@@ -68,11 +68,23 @@ def init_db():
             log.warning("DB sync on init_db: %s", e)
 
 
+def _to_tuple(params):
+    """Ensure parameters are converted to a tuple for libsql compatibility."""
+    if params is None:
+        return None
+    if isinstance(params, tuple):
+        return params
+    if isinstance(params, list):
+        return tuple(params)
+    return (params,)
+
+
 def execute(sql: str, params=None):
     """Execute a write query and commit."""
     conn = get_connection()
-    if params:
-        conn.execute(sql, params)
+    p = _to_tuple(params)
+    if p is not None:
+        conn.execute(sql, p)
     else:
         conn.execute(sql)
     conn.commit()
@@ -86,8 +98,9 @@ def execute(sql: str, params=None):
 def fetchone(sql: str, params=None) -> dict | None:
     """Fetch a single row as a dict, or None."""
     conn = get_connection()
-    if params:
-        cur = conn.execute(sql, params)
+    p = _to_tuple(params)
+    if p is not None:
+        cur = conn.execute(sql, p)
     else:
         cur = conn.execute(sql)
     columns = [d[0] for d in cur.description] if cur.description else []
@@ -100,12 +113,14 @@ def fetchone(sql: str, params=None) -> dict | None:
 def fetchall(sql: str, params=None) -> list[dict]:
     """Fetch all rows as a list of dicts."""
     conn = get_connection()
-    if params:
-        cur = conn.execute(sql, params)
+    p = _to_tuple(params)
+    if p is not None:
+        cur = conn.execute(sql, p)
     else:
         cur = conn.execute(sql)
     columns = [d[0] for d in cur.description] if cur.description else []
     return [dict(zip(columns, row)) for row in cur.fetchall()]
+
 
 
 def get_bot_state(key: str) -> str | None:

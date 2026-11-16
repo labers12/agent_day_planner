@@ -160,7 +160,7 @@ def get_cached_schedule(day_of_week: int | None = None, week_parity: str | None 
         sql += " AND (week_parity = ? OR week_parity = 'any')"
         params.append(week_parity)
     sql += " ORDER BY start_time"
-    return fetchall(sql, params if params else None)
+    return fetchall(sql, tuple(params) if params else None)
 
 
 def get_todays_schedule() -> list[dict]:

@@ -50,25 +50,34 @@ class BaseAgent:
         """
         client = get_gemini_client()
         contents = f"{self.system_prompt}\n\n---\n\n{user_prompt}"
+        models_to_try = list(dict.fromkeys([GEMINI_MODEL, "gemini-2.0-flash", "gemini-1.5-flash"]))
 
-        for attempt in range(2):
-            try:
-                response = client.models.generate_content(
-                    model=GEMINI_MODEL,
-                    contents=contents,
-                )
-                text = response.text.strip()
+        last_error = None
+        for model_name in models_to_try:
+            for attempt in range(2):
+                try:
+                    response = client.models.generate_content(
+                        model=model_name,
+                        contents=contents,
+                    )
+                    text = response.text.strip()
 
-                if expect_json:
-                    return parse_json_response(text)
-                return text
+                    if expect_json:
+                        return parse_json_response(text)
+                    return text
 
-            except Exception as e:
-                log.warning("Gemini call attempt %d failed: %s", attempt + 1, e)
-                if attempt == 0:
-                    time.sleep(2)
-                else:
-                    raise
+                except Exception as e:
+                    last_error = e
+                    log.warning(
+                        "Gemini call (%s, attempt %d) failed: %s",
+                        model_name,
+                        attempt + 1,
+                        e,
+                    )
+                    time.sleep(1)
+
+        if last_error:
+            raise last_error
 
     async def ask_async(self, user_prompt: str, expect_json: bool = False) -> str | dict | list:
         """Async wrapper — delegates to sync ask() (Gemini SDK is sync)."""
