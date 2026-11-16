@@ -50,7 +50,7 @@ class BaseAgent:
         """
         client = get_gemini_client()
         contents = f"{self.system_prompt}\n\n---\n\n{user_prompt}"
-        models_to_try = list(dict.fromkeys([GEMINI_MODEL, "gemini-2.0-flash", "gemini-1.5-flash"]))
+        models_to_try = list(dict.fromkeys([GEMINI_MODEL, "gemini-3.8-flash", "gemini-3.5-flash-lite"]))
 
         last_error = None
         for model_name in models_to_try:

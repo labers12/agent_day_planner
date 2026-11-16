@@ -44,7 +44,7 @@ except ValueError:
 
 # ── Google Gemini AI ──────────────────────────────────────
 GEMINI_API_KEY: str = _get("GEMINI_API_KEY", "")
-GEMINI_MODEL: str = _get("GEMINI_MODEL", "gemini-2.0-flash")
+GEMINI_MODEL: str = _get("GEMINI_MODEL", "gemini-3.8-flash")
 
 # ── Turso Database ────────────────────────────────────────
 TURSO_DATABASE_URL: str = _get("TURSO_DATABASE_URL", "local.db")
